@@ -2,13 +2,6 @@
     "name": "Brad",
     "currentVegetables": [
         {
-            "id": "1",
-            "name": "carrot",
-            "untilHarvest": 2,
-            "isWatered": false,
-            "isFertilized": false
-        },
-        {
             "id": "2",
             "name": "tomato",
             "untilHarvest": 3,
@@ -23,6 +16,6 @@
             "isFertilized": false
         }
     ],
-    "balance": 800,
+    "balance": 830,
     "currentHouseLevel": "2"
 }

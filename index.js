@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
+const crypto = require("crypto");
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,11 @@ const getUserData = () => {
 const getHousesData = () => {
     const housesDataJson = fs.readFileSync("./data/houses.json");
     return JSON.parse(housesDataJson);
+}
+
+const getMarketData = () => {
+    const marketDataJson = fs.readFileSync("./data/market.json");
+    return JSON.parse(marketDataJson);
 }
 
 app.get("/user", (req, res) => {
@@ -39,8 +45,30 @@ app.put("/buy-house/:level", (req, res) => {
 });
 
 app.put("/sell/:id", (req, res) => {
-    res.send("sell path");
+    const userData = getUserData();
+    const marketData = getMarketData();
+    const currentVegetables = userData.currentVegetables;
+    const vegetableToSell = currentVegetables.find((item) => item.id === req.params.id);
+    const filteredVegetables = currentVegetables.filter((item) => item.id !== req.params.id);
+    userData.currentVegetables = filteredVegetables;
 
+    const vegetableToSellMarketData = marketData.find((item) => item.name === vegetableToSell.name);
+    let priceOfVegetable = Number(vegetableToSellMarketData.sellingPrice);
+
+    if (Number(vegetableToSell.untilHarvest) === -1) {
+        priceOfVegetable /= 2;
+    }
+
+    if (vegetableToSell.isFertilized === "true") {
+        priceOfVegetable *= 2;
+    }
+
+    userData.balance += priceOfVegetable;
+    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+
+    res.status(201).json({
+        message: "Succesfully sold the vegetable"
+    });
 });
 
 app.post("/buy", (req, res) => {
