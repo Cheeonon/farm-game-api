@@ -81,7 +81,7 @@
 ### PUT `/buy-house/:level`
 - Sets user's currentHouseLevel to the requested level
 - Subtracts the house's price from balance
-- Currently doesn't check if the balance is enough
+- When not enough money, sends back status 400
 - Sends back a success message
 
 ### PUT `/sell/:id`
@@ -89,12 +89,14 @@
 - Add the sold price to the balance
 - if untilHarvest is -1, only half the price is added
 - If isFertilized is true, double the price
+- If veggie not mature yet, sends back status 400
 - Sends back a success message
 
 ### POST `/buy/:itemName`
 - Add the item with the name to the array
 - Generates random id and give it to the item
 - Subtract the seed price from the balance
+- If not enough balance to buy, sends back status 400
 - Sends back a success message
 
 ### PUT `/water/:id`
