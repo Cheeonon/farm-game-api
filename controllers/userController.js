@@ -36,6 +36,15 @@ const sellItemWithId = (req, res) => {
     const marketData = marketModel.getMarketData();
     const currentVegetables = userData.currentVegetables;
     const vegetableToSell = currentVegetables.find((item) => item.id === req.params.id);
+
+    // Abort if veggie is immature
+    if (Number(vegetableToSell.untilHarvest) > 0) {
+        res.status(400).json({
+            message: "Not ready to harvest"
+        });
+        return;
+    }
+
     const filteredVegetables = currentVegetables.filter((item) => item.id !== req.params.id);
     userData.currentVegetables = filteredVegetables;
 
