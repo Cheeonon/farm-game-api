@@ -121,12 +121,28 @@ app.put("/fertilize/:id", (req, res) => {
     res.status(201).json({
         message: "Succesfully fertilized the vegetable"
     });
-
 });
 
 app.put("/sleep", (req, res) => {
-    res.send("sleep path");
+    const userData = getUserData();
+    const currentVegetables = userData.currentVegetables;
+    currentVegetables.forEach((item) => {
+        const untilHarvest = Number(item.untilHarvest);
+        
+        if ((untilHarvest > 0 && item.isWatered) || untilHarvest <= 0)
+            item.untilHarvest = untilHarvest - 1;
 
+        item.isWatered = false;
+    })
+
+    const filteredVegetables = currentVegetables.filter((item) => Number(item.untilHarvest) >= -1);
+    userData.currentVegetables = filteredVegetables;
+
+    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+
+    res.status(201).json({
+        message: "Vegetables updated for today"
+    });
 });
 
 app.put("/restart", (req, res) => {
