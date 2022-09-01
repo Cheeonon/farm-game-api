@@ -92,14 +92,24 @@ app.post("/buy/:itemName", (req, res) => {
     fs.writeFileSync("./data/user.json", JSON.stringify(userData));
 
     res.status(201).json({
-        message: "Succesfully sold the vegetable"
+        message: "Succesfully bought the vegetable"
     });
 
 });
 
-app.put("/water", (req, res) => {
-    res.send("water path");
+app.put("/water/:id", (req, res) => {
+    const userData = getUserData();
+    const currentVegetables = userData.currentVegetables;
+    const vegetableToWater = currentVegetables.find((item) => item.id === req.params.id);
+    vegetableToWater.isWatered = true;
 
+    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+
+    res.status(201).json({
+        message: "Succesfully watered the vegetable"
+    });
+
+    
 });
 
 app.put("/fertilize", (req, res) => {

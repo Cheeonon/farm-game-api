@@ -5,7 +5,7 @@
             "id": "2",
             "name": "tomato",
             "untilHarvest": 3,
-            "isWatered": false,
+            "isWatered": true,
             "isFertilized": false
         },
         {
