@@ -1,21 +1,6 @@
 {
     "name": "Brad",
-    "currentVegetables": [
-        {
-            "id": "2",
-            "name": "tomato",
-            "untilHarvest": 1,
-            "isWatered": false,
-            "isFertilized": true
-        },
-        {
-            "id": "3",
-            "name": "cucumber",
-            "untilHarvest": 4,
-            "isWatered": false,
-            "isFertilized": false
-        }
-    ],
-    "balance": 830,
-    "currentHouseLevel": "2"
+    "currentVegetables": [],
+    "balance": 100,
+    "currentHouseLevel": "1"
 }

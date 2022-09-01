@@ -146,7 +146,18 @@ app.put("/sleep", (req, res) => {
 });
 
 app.put("/restart", (req, res) => {
-    res.send("Restart path");
+    const userData = {
+        name: "Brad",
+        currentVegetables: [],
+        balance: 100,
+        currentHouseLevel: "1"
+    };
+
+    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+
+    res.status(201).json({
+        message: "Successfully reset"
+    });
 })
 
 
