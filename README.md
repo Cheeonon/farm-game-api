@@ -4,7 +4,6 @@
 
 ### GET `/user`
 - Returns the user object
-- Contains only enough information to display in side bar
 #### Response body example
 ```json
 {
@@ -28,6 +27,55 @@
     "balance": 100,
     "currentHouseLevel": "1"
 }
+```
+
+### GET `/market`
+- Returns the market array
+#### Response body example
+```json
+[
+  {
+    "name": "carrot",
+    "timeToGrow": "2",
+    "seedPrice": "5",
+    "sellingPrice": "30",
+    "image": "#"
+  },
+  {
+    "name": "tomato",
+    "timeToGrow": "3",
+    "seedPrice": "10",
+    "sellingPrice": "40",
+    "image": "#"
+  },
+  {
+    "name": "cucumber",
+    "timeToGrow": "4",
+    "seedPrice": "10",
+    "sellingPrice": "50",
+    "image": "#"
+  }
+]
+```
+
+### GET `/houses`
+- Returns the houses array
+#### Response body example
+```json
+[
+  {
+    "level": 1,
+    "name": "poor house",
+    "image": "#",
+    "price": 100
+  },
+  {
+    "level": 2,
+    "name": "mint house",
+    "image": "#",
+    "price": 200
+  }
+]
 ```
 
 ### PUT `/buy-house/:level`
