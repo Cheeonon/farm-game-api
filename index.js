@@ -2,20 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const crypto = require("crypto");
 const userModel = require("./models/userModel");
+const housesModel = require("./models/housesModel");
+const marketModel = require("./models/marketModel");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-const getHousesData = () => {
-    const housesDataJson = fs.readFileSync("./data/houses.json");
-    return JSON.parse(housesDataJson);
-}
-
-const getMarketData = () => {
-    const marketDataJson = fs.readFileSync("./data/market.json");
-    return JSON.parse(marketDataJson);
-}
 
 
 // get methods
@@ -24,22 +16,22 @@ app.get("/user", (req, res) => {
 });
 
 app.get("/houses", (req, res) => {
-    res.json(getHousesData());
+    res.json(housesModel.getHousesData());
 });
 
 app.get("/market", (req, res) => {
-    res.json(getMarketData());
+    res.json(marketModel.getMarketData());
 });
 
 
 // puts and post
 app.put("/buy-house/:level", (req, res) => {
     const requestedLevel = req.params.level;
-    const housesData = getHousesData();
+    const housesData = housesModel.getHousesData();
     const requestedHouse = housesData.find((house) => Number(house.level) === Number(requestedLevel));
 
     console.log(requestedHouse);
-    const userData = getUserData();
+    const userData = userModel.getUserData();
     userData.currentHouseLevel = requestedLevel;
 
     userData.balance = Number(userData.balance) - Number(requestedHouse.price);
@@ -51,8 +43,8 @@ app.put("/buy-house/:level", (req, res) => {
 });
 
 app.put("/sell/:id", (req, res) => {
-    const userData = getUserData();
-    const marketData = getMarketData();
+    const userData = userModel.getUserData();
+    const marketData = marketModel.getMarketData();
     const currentVegetables = userData.currentVegetables;
     const vegetableToSell = currentVegetables.find((item) => item.id === req.params.id);
     const filteredVegetables = currentVegetables.filter((item) => item.id !== req.params.id);
@@ -78,8 +70,8 @@ app.put("/sell/:id", (req, res) => {
 });
 
 app.post("/buy/:itemName", (req, res) => {
-    const userData = getUserData();
-    const marketData = getMarketData();
+    const userData = userModel.getUserData();
+    const marketData = marketModel.getMarketData();
     const currentVegetables = userData.currentVegetables;
 
     const veggieName = req.params.itemName;
@@ -110,7 +102,7 @@ app.post("/buy/:itemName", (req, res) => {
 });
 
 app.put("/water/:id", (req, res) => {
-    const userData = getUserData();
+    const userData = userModel.getUserData();
     const currentVegetables = userData.currentVegetables;
     const vegetableToWater = currentVegetables.find((item) => item.id === req.params.id);
     vegetableToWater.isWatered = true;
@@ -123,7 +115,7 @@ app.put("/water/:id", (req, res) => {
 });
 
 app.put("/fertilize/:id", (req, res) => {
-    const userData = getUserData();
+    const userData = userModel.getUserData();
     const currentVegetables = userData.currentVegetables;
     const vegetableToFertilize = currentVegetables.find((item) => item.id === req.params.id);
     vegetableToFertilize.isFertilized = true;
@@ -136,7 +128,7 @@ app.put("/fertilize/:id", (req, res) => {
 });
 
 app.put("/sleep", (req, res) => {
-    const userData = getUserData();
+    const userData = userModel.getUserData();
     const currentVegetables = userData.currentVegetables;
     currentVegetables.forEach((item) => {
         const untilHarvest = Number(item.untilHarvest);
