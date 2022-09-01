@@ -12,11 +12,18 @@ const buyHouse = (req, res) => {
     const housesData = housesModel.getHousesData();
     const requestedHouse = housesData.find((house) => Number(house.level) === Number(requestedLevel));
 
-    console.log(requestedHouse);
     const userData = userModel.getUserData();
     userData.currentHouseLevel = requestedLevel;
 
-    userData.balance = Number(userData.balance) - Number(requestedHouse.price);
+    const remainingBalance = Number(userData.balance) - Number(requestedHouse.price);
+    if (remainingBalance < 0) {
+        res.status(400).json({
+            message: "Not enough money"
+        });
+        return;
+    }
+
+    userData.balance = remainingBalance;
     userModel.writeUserDataToJson(userData);
 
     res.status(201).json({
@@ -132,14 +139,14 @@ const sleepAndGetUpNextDay = (req, res) => {
 };
 
 const resetUserData = (req, res) => {
-    const userData = {
+    const newUserData = {
         name: "Brad",
         currentVegetables: [],
         balance: 100,
         currentHouseLevel: "1"
     };
 
-    userModel.writeUserDataToJson(userData);
+    userModel.writeUserDataToJson(newUserData);
 
     res.status(201).json({
         message: "Successfully reset"
