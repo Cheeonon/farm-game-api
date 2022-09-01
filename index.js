@@ -76,18 +76,18 @@ app.post("/buy/:itemName", (req, res) => {
     const marketData = getMarketData();
     const currentVegetables = userData.currentVegetables;
 
-    const vegiName = req.params.itemName;
-    const buyingVegiMarketData = marketData.find((item) => item.name === vegiName);
+    const veggieName = req.params.itemName;
+    const buyingveggieMarketData = marketData.find((item) => item.name === veggieName);
 
-    const boughtVegi = {
+    const boughtveggie = {
         id: crypto.randomUUID(),
-        name: vegiName,
-        untilHarvest: buyingVegiMarketData.timeToGrow,
+        name: veggieName,
+        untilHarvest: buyingveggieMarketData.timeToGrow,
         isWatered: false,
         isFertilized: false
     };
 
-    currentVegetables.push(boughtVegi);
+    currentVegetables.push(boughtveggie);
     userData.currentVegetables = currentVegetables;
     fs.writeFileSync("./data/user.json", JSON.stringify(userData));
 
