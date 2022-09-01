@@ -1,21 +1,63 @@
 [
     {
-          "name": "carrot",
+          "name": "tomato",
           "timeToGrow": "2",
           "seedPrice": "5",
           "sellingPrice": "30",
           "image": "#"
     },
     {
-          "name": "tomato",
-          "timeToGrow": "3",
+          "name": "watermelon",
+          "timeToGrow": "6",
           "seedPrice": "10",
           "sellingPrice": "40",
           "image": "#"
     },
     {
-          "name": "cucumber",
+          "name": "grape",
           "timeToGrow": "4",
+          "seedPrice": "10",
+          "sellingPrice": "50",
+          "image": "#"
+    },
+    {
+          "name": "pineapple",
+          "timeToGrow": "6",
+          "seedPrice": "30",
+          "sellingPrice": "100",
+          "image": "#"
+    },
+    {
+          "name": "strawberry",
+          "timeToGrow": "1",
+          "seedPrice": "5",
+          "sellingPrice": "10",
+          "image": "#"
+    },
+    {
+          "name": "orange",
+          "timeToGrow": "2",
+          "seedPrice": "10",
+          "sellingPrice": "50",
+          "image": "#"
+    },
+    {
+          "name": "corn",
+          "timeToGrow": "3",
+          "seedPrice": "15",
+          "sellingPrice": "50",
+          "image": "#"
+    },
+    {
+          "name": "eggplant",
+          "timeToGrow": "1",
+          "seedPrice": "15",
+          "sellingPrice": "25",
+          "image": "#"
+    },
+    {
+          "name": "potato",
+          "timeToGrow": "1",
           "seedPrice": "10",
           "sellingPrice": "50",
           "image": "#"
