@@ -23,10 +23,22 @@ const getMarketData = () => {
     return JSON.parse(marketDataJson);
 }
 
+
+// get methods
 app.get("/user", (req, res) => {
     res.json(getUserData());
 });
 
+app.get("/houses", (req, res) => {
+    res.json(getHousesData());
+});
+
+app.get("/market", (req, res) => {
+    res.json(getMarketData());
+});
+
+
+// puts and post
 app.put("/buy-house/:level", (req, res) => {
     const requestedLevel = req.params.level;
     const housesData = getHousesData();

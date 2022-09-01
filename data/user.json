@@ -1,1 +1,28 @@
-{"name":"Brad","currentVegetables":[{"id":"2e9ff38d-2bc0-4dda-b999-3c3dc5d66589","name":"carrot","untilHarvest":"2","isWatered":false,"isFertilized":false},{"id":"6251fe2b-1084-42a3-b396-e4a6ed9d04de","name":"tomato","untilHarvest":"3","isWatered":false,"isFertilized":false},{"id":"c78edd8a-8947-4fb3-aae5-419e892d0820","name":"tomato","untilHarvest":"3","isWatered":false,"isFertilized":false}],"balance":90,"currentHouseLevel":"1"}
+{
+    "name": "Brad",
+    "currentVegetables": [
+        {
+            "id": "2e9ff38d-2bc0-4dda-b999-3c3dc5d66589",
+            "name": "carrot",
+            "untilHarvest": "2",
+            "isWatered": false,
+            "isFertilized": false
+        },
+        {
+            "id": "6251fe2b-1084-42a3-b396-e4a6ed9d04de",
+            "name": "tomato",
+            "untilHarvest": "3",
+            "isWatered": false,
+            "isFertilized": false
+        },
+        {
+            "id": "c78edd8a-8947-4fb3-aae5-419e892d0820",
+            "name": "tomato",
+            "untilHarvest": -1,
+            "isWatered": false,
+            "isFertilized": false
+        }
+    ],
+    "balance": 90,
+    "currentHouseLevel": "1"
+}
