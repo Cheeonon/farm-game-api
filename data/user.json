@@ -14,6 +14,13 @@
             "untilHarvest": 4,
             "isWatered": false,
             "isFertilized": false
+        },
+        {
+            "id": "28c91af3-fd62-4378-8c67-413583f5d216",
+            "name": "carrot",
+            "untilHarvest": "2",
+            "isWatered": false,
+            "isFertilized": false
         }
     ],
     "balance": 830,

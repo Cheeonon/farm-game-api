@@ -71,8 +71,29 @@ app.put("/sell/:id", (req, res) => {
     });
 });
 
-app.post("/buy", (req, res) => {
-    res.send("Buy path");
+app.post("/buy/:itemName", (req, res) => {
+    const userData = getUserData();
+    const marketData = getMarketData();
+    const currentVegetables = userData.currentVegetables;
+
+    const vegiName = req.params.itemName;
+    const buyingVegiMarketData = marketData.find((item) => item.name === vegiName);
+
+    const boughtVegi = {
+        id: crypto.randomUUID(),
+        name: vegiName,
+        untilHarvest: buyingVegiMarketData.timeToGrow,
+        isWatered: false,
+        isFertilized: false
+    };
+
+    currentVegetables.push(boughtVegi);
+    userData.currentVegetables = currentVegetables;
+    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+
+    res.status(201).json({
+        message: "Succesfully sold the vegetable"
+    });
 
 });
 
