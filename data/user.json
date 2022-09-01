@@ -2,27 +2,20 @@
     "name": "Brad",
     "currentVegetables": [
         {
-            "id": "96aa5247-cd15-4ef4-bb3a-07d8a7e020f9",
+            "id": "c5f8cdd8-0a4e-4f0a-ae75-6c524e587dff",
             "name": "tomato",
-            "untilHarvest": "3",
+            "untilHarvest": 2,
             "isWatered": false,
-            "isFertilized": false
+            "isFertilized": true
         },
         {
-            "id": "776f2654-bc04-4152-be95-0815faa9ed12",
-            "name": "cucumber",
-            "untilHarvest": "4",
-            "isWatered": false,
-            "isFertilized": false
-        },
-        {
-            "id": "304787f7-3cea-46d5-83a3-57f129cee831",
+            "id": "96a639d6-54bd-4698-98be-6413676856c1",
             "name": "carrot",
             "untilHarvest": "2",
             "isWatered": false,
             "isFertilized": false
         }
     ],
-    "balance": 975,
-    "currentHouseLevel": "1"
+    "balance": 9825,
+    "currentHouseLevel": "2"
 }
