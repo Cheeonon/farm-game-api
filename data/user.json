@@ -1,29 +1,28 @@
 {
     "name": "Brad",
     "currentVegetables": [
-          {
-                "id": "1",
-                "name": "carrot",
-                "untilHarvest": 2,
-                "isWatered": false,
-                "isFertilized": false
-          },
-          {
-                "id": "2",
-                "name": "tomato",
-                "untilHarvest": 3,
-                "isWatered": false,
-                "isFertilized": false
-          },
-          {
-                "id": "3",
-                "name": "cucumber",
-                "untilHarvest": 4,
-                "isWatered": false,
-                "isFertilized": false
-          }
+        {
+            "id": "1",
+            "name": "carrot",
+            "untilHarvest": 2,
+            "isWatered": false,
+            "isFertilized": false
+        },
+        {
+            "id": "2",
+            "name": "tomato",
+            "untilHarvest": 3,
+            "isWatered": false,
+            "isFertilized": false
+        },
+        {
+            "id": "3",
+            "name": "cucumber",
+            "untilHarvest": 4,
+            "isWatered": false,
+            "isFertilized": false
+        }
     ],
-    "balance" : "100",
-    "currentHouseLevel": 1
-
+    "balance": 800,
+    "currentHouseLevel": "2"
 }
