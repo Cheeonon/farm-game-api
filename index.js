@@ -23,9 +23,7 @@ app.get("/market", (req, res) => {
     res.json(marketModel.getMarketData());
 });
 
-
-// puts and post
-app.put("/buy-house/:level", (req, res) => {
+const buyHouse = (req, res) => {
     const requestedLevel = req.params.level;
     const housesData = housesModel.getHousesData();
     const requestedHouse = housesData.find((house) => Number(house.level) === Number(requestedLevel));
@@ -40,9 +38,9 @@ app.put("/buy-house/:level", (req, res) => {
     res.status(201).json({
         message: "Succesfully bought the house"
     });
-});
+};
 
-app.put("/sell/:id", (req, res) => {
+const sellItemWithId = (req, res) => {
     const userData = userModel.getUserData();
     const marketData = marketModel.getMarketData();
     const currentVegetables = userData.currentVegetables;
@@ -67,9 +65,9 @@ app.put("/sell/:id", (req, res) => {
     res.status(201).json({
         message: "Succesfully sold the vegetable"
     });
-});
+};
 
-app.post("/buy/:itemName", (req, res) => {
+const buySeedWithName = (req, res) => {
     const userData = userModel.getUserData();
     const marketData = marketModel.getMarketData();
     const currentVegetables = userData.currentVegetables;
@@ -99,9 +97,9 @@ app.post("/buy/:itemName", (req, res) => {
         message: "Succesfully bought the vegetable"
     });
 
-});
+};
 
-app.put("/water/:id", (req, res) => {
+const waterPlantWithId = (req, res) => {
     const userData = userModel.getUserData();
     const currentVegetables = userData.currentVegetables;
     const vegetableToWater = currentVegetables.find((item) => item.id === req.params.id);
@@ -112,9 +110,9 @@ app.put("/water/:id", (req, res) => {
     res.status(201).json({
         message: "Succesfully watered the vegetable"
     });
-});
+};
 
-app.put("/fertilize/:id", (req, res) => {
+const fertilizePlantWithId = (req, res) => {
     const userData = userModel.getUserData();
     const currentVegetables = userData.currentVegetables;
     const vegetableToFertilize = currentVegetables.find((item) => item.id === req.params.id);
@@ -125,9 +123,9 @@ app.put("/fertilize/:id", (req, res) => {
     res.status(201).json({
         message: "Succesfully fertilized the vegetable"
     });
-});
+};
 
-app.put("/sleep", (req, res) => {
+const sleepAndGetUpNextDay = (req, res) => {
     const userData = userModel.getUserData();
     const currentVegetables = userData.currentVegetables;
     currentVegetables.forEach((item) => {
@@ -147,9 +145,9 @@ app.put("/sleep", (req, res) => {
     res.status(201).json({
         message: "Vegetables updated for today"
     });
-});
+};
 
-app.put("/restart", (req, res) => {
+const resetUserData = (req, res) => {
     const userData = {
         name: "Brad",
         currentVegetables: [],
@@ -162,7 +160,22 @@ app.put("/restart", (req, res) => {
     res.status(201).json({
         message: "Successfully reset"
     });
-})
+};
+
+// puts and post
+app.put("/buy-house/:level", buyHouse);
+
+app.put("/sell/:id", sellItemWithId);
+
+app.post("/buy/:itemName", buySeedWithName);
+
+app.put("/water/:id", waterPlantWithId);
+
+app.put("/fertilize/:id", fertilizePlantWithId);
+
+app.put("/sleep", sleepAndGetUpNextDay);
+
+app.put("/restart", resetUserData);
 
 
 app.listen(8080, () => {
