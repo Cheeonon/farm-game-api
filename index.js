@@ -108,12 +108,19 @@ app.put("/water/:id", (req, res) => {
     res.status(201).json({
         message: "Succesfully watered the vegetable"
     });
-
-    
 });
 
-app.put("/fertilize", (req, res) => {
-    res.send("fertilize path");
+app.put("/fertilize/:id", (req, res) => {
+    const userData = getUserData();
+    const currentVegetables = userData.currentVegetables;
+    const vegetableToFertilize = currentVegetables.find((item) => item.id === req.params.id);
+    vegetableToFertilize.isFertilized = true;
+
+    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+
+    res.status(201).json({
+        message: "Succesfully fertilized the vegetable"
+    });
 
 });
 
