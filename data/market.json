@@ -1,0 +1,23 @@
+[
+    {
+          "name": "carrot",
+          "timeToGrow": "2",
+          "seedPrice": "5",
+          "sellingPrice": "30",
+          "image": "#"
+    },
+    {
+          "name": "tomato",
+          "timeToGrow": "3",
+          "seedPrice": "10",
+          "sellingPrice": "40",
+          "image": "#"
+    },
+    {
+          "name": "cucumber",
+          "timeToGrow": "4",
+          "seedPrice": "10",
+          "sellingPrice": "50",
+          "image": "#"
+    }
+]
