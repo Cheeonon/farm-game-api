@@ -23,6 +23,10 @@ const getMarketData = () => {
     return JSON.parse(marketDataJson);
 }
 
+const writeUserDataToJson = (userData) => {
+    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+}
+
 
 // get methods
 app.get("/user", (req, res) => {
@@ -49,7 +53,7 @@ app.put("/buy-house/:level", (req, res) => {
     userData.currentHouseLevel = requestedLevel;
 
     userData.balance = Number(userData.balance) - Number(requestedHouse.price);
-    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+    writeUserDataToJson(userData);
 
     res.status(201).json({
         message: "Succesfully bought the house"
@@ -76,7 +80,7 @@ app.put("/sell/:id", (req, res) => {
     }
 
     userData.balance += priceOfVegetable;
-    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+    writeUserDataToJson(userData);
 
     res.status(201).json({
         message: "Succesfully sold the vegetable"
@@ -107,7 +111,7 @@ app.post("/buy/:itemName", (req, res) => {
     const boughtveggiePrice = Number(buyingveggieMarketData.seedPrice);
     userData.balance = currentBalance - boughtveggiePrice;
 
-    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+    writeUserDataToJson(userData);
 
     res.status(201).json({
         message: "Succesfully bought the vegetable"
@@ -121,7 +125,7 @@ app.put("/water/:id", (req, res) => {
     const vegetableToWater = currentVegetables.find((item) => item.id === req.params.id);
     vegetableToWater.isWatered = true;
 
-    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+    writeUserDataToJson(userData);
 
     res.status(201).json({
         message: "Succesfully watered the vegetable"
@@ -134,7 +138,7 @@ app.put("/fertilize/:id", (req, res) => {
     const vegetableToFertilize = currentVegetables.find((item) => item.id === req.params.id);
     vegetableToFertilize.isFertilized = true;
 
-    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+    writeUserDataToJson(userData);
 
     res.status(201).json({
         message: "Succesfully fertilized the vegetable"
@@ -156,7 +160,7 @@ app.put("/sleep", (req, res) => {
     const filteredVegetables = currentVegetables.filter((item) => Number(item.untilHarvest) >= -1);
     userData.currentVegetables = filteredVegetables;
 
-    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+    writeUserDataToJson(userData);
 
     res.status(201).json({
         message: "Vegetables updated for today"
@@ -171,7 +175,7 @@ app.put("/restart", (req, res) => {
         currentHouseLevel: "1"
     };
 
-    fs.writeFileSync("./data/user.json", JSON.stringify(userData));
+    writeUserDataToJson(userData);
 
     res.status(201).json({
         message: "Successfully reset"
