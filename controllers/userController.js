@@ -75,6 +75,19 @@ const buySeedWithName = (req, res) => {
     const veggieName = req.params.itemName;
     const buyingveggieMarketData = marketData.find((item) => item.name === veggieName);
 
+    // Subtract seed price from balance
+    let currentBalance = Number(userData.balance);
+    const boughtveggiePrice = Number(buyingveggieMarketData.seedPrice);
+
+    if (currentBalance - boughtveggiePrice < 0) {
+        res.status(400).json({
+            message: "Not enough money to buy"
+        });
+        return;
+    }
+
+    userData.balance = currentBalance - boughtveggiePrice;
+
     // Add newly bought veggie to the array
     const boughtveggie = {
         id: crypto.randomUUID(),
@@ -85,11 +98,6 @@ const buySeedWithName = (req, res) => {
     };
     currentVegetables.push(boughtveggie);
     userData.currentVegetables = currentVegetables;
-
-    // Subtract seed price from balance
-    let currentBalance = Number(userData.balance);
-    const boughtveggiePrice = Number(buyingveggieMarketData.seedPrice);
-    userData.balance = currentBalance - boughtveggiePrice;
 
     userModel.writeUserDataToJson(userData);
 
