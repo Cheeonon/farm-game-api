@@ -5,6 +5,7 @@ const marketController = require("./controllers/marketController");
 const userController = require("./controllers/userController");
 
 const app = express();
+const PORT = 8080;
 app.use(cors());
 app.use(express.json());
 
@@ -33,6 +34,6 @@ app.put("/sleep", userController.sleepAndGetUpNextDay);
 app.put("/restart", userController.resetUserData);
 
 
-app.listen(8080, () => {
-    console.log("Server listening on port 8080");
+app.listen(PORT, () => {
+    console.log("Server listening on port ", PORT);
 });
