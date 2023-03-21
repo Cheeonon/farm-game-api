@@ -9,8 +9,6 @@ const PORT = process.env.PORT || 4000;
 app.use(cors());
 app.use(express.json());
 
-
-
 // get methods
 app.get("/user", userController.getUserJson);
 
@@ -32,7 +30,6 @@ app.put("/fertilize/:id", userController.fertilizePlantWithId);
 app.put("/sleep", userController.sleepAndGetUpNextDay);
 
 app.put("/restart", userController.resetUserData);
-
 
 app.listen(PORT, () => {
     console.log("Server listening on port ", PORT);
